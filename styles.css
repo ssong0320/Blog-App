@@ -1,84 +1,136 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 /* root styling */
-
-:root{
-    --light: #f8f9fa;
-    --secondary: #adb5bd;
-    --dark: #343a40;
-    --primary-color: red;
-    --secondary-color: #c45b2e;
-    --border: #e9ecef;
-
+:root {
+  --primary-background: white;
+  --navbar-background: #333333;
+  --light: #f8f9fa;
+  --secondary: #adb5bd;
+  --dark: #343a40;
+  --primary-color: red;
+  --secondary-color: #c45b2e;
+  --border: #e9ecef;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    padding:0;
-    margin:0;
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+  background-color: var(--primary-background);
 }
 
 a {
-    text-decoration:none;
+  text-decoration: none;
+  color: var(--light);
 }
 
-* > *{
-    box-sizing: border-box;
+* > * {
+  box-sizing: border-box;
 }
 
-
-/* global*/
-
-
+/* global */
 .text-light {
-    color:var(--light);
+  color: var(--light);
 }
 
 .text-secondary {
-    color:var(--secondary);
+  color: var(--secondary);
 }
 
 .text-dark {
-    color:var(--dark)
-}
-.text-primary {
-    color:var(--primary-color)
-}
-.header {
-    background-color: var(--light);
+  color: var(--dark);
 }
 
-.container {
-    max-width: 1200px;
-    padding: 0 15px;
-    margin: auto;
+.text-primary {
+  color: var(--primary-color);
+}
+
+.header {
+  background-color: var(--light);
 }
 
 /* section */
-
 .navbar {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: var(--navbar-background);
 }
+
 .brand {
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    align-self: center;
-    font-size: 32px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  align-self: center;
+  font-size: 32px;
+  color: var(--light);
 }
 
 .collapse {
-    align-self: center;
+  align-self: center;
 }
 
 .nav-link {
-    font-size: 18px;
-    margin: 12px;
-    color:var(--dark);
-    font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  margin: 12px;
+  color: var(--light);
+  font-family: 'Roboto', sans-serif;
 }
-.nav-link:hover{
- color: var(--primary-color)
+
+.nav-link:hover {
+  color: var(--primary-color);
+}
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 5%;
+    background-position: center;
+    background-size: cover;
+
+}
+.search-bar {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(128, 128, 128, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60px;
+    padding: 10px 20px;
+    backdrop-filter: blur(4px) saturate(180%);
+  }
+.search-bar input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 24px 20px;
+    font-size: 20px;
+    color: #cac7ff;
+}
+
+::placeholder {
+    color: #cac7ff;
+}
+.search-bar button img {
+    width: 25px;
+}
+.search-bar button {
+    border: 0;
+    width: 60px;
+    height: 60px;
+    background: #58629b;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.blog-section {
+    height: 500px;
+    background-color: rgba(128, 128, 128, 0.2); /* Same gray shading as search bar */
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
 }

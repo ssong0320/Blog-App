@@ -7,7 +7,7 @@ app.get('/', (req,res) => res.send('Hello World'));
 
 app.use(cors());
 
-let products = [
+let blogs = [
     {
         id:1,
         name:'product 1',
@@ -22,8 +22,8 @@ let products = [
 
 //get all products
 
-app.get("/productlist", (req,res) => {
-    res.json(products);
+app.get("/bloglist", (req,res) => {
+    res.json(blogs);
 });
 
 app.listen(port, () => console.log(`App is on port ${port}`))

@@ -4,12 +4,14 @@ const searchInput = document.querySelector('input[name="q"]');
 
 let blogs = [];
 
+//event listener for the search func
 searchInput.addEventListener('keyup', (e) => {
   const searchTerm = e.target.value.toLowerCase().trim();
   const searchWords = searchTerm.split(/\s+/);
 
   blogTableBody.innerHTML = '';
 
+  // check if the word searched is there
   const filteredBlogs = blogs.filter((blog) => {
     return searchWords.every((word) => {
       return blog.title.toLowerCase().includes(word) ||
@@ -21,6 +23,14 @@ searchInput.addEventListener('keyup', (e) => {
   displayBlogs(filteredBlogs);
 });
 
+//iterate to display row
+function displayBlogs(blogs) {
+  blogs.forEach((blog) => {
+    const row = createTableRow(blog);
+    blogTableBody.appendChild(row);
+  });
+}
+
 
 
 const generateId = () => {
@@ -29,12 +39,12 @@ const generateId = () => {
 
 // add blog
 const addBlog = () => {
-  const id = generateId();
+    const id = generateId();
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const content = document.getElementById("content").value;
-    console.log(id, title, author, content);
 
+    //POST req to server
     fetch('/blogadd', {
         method: 'POST',
         headers: {
@@ -44,6 +54,7 @@ const addBlog = () => {
     })
     .then(response => response.json())
     .then(blog => {
+      //add new blog to the table
         const row = document.createElement('tr');
         const idCell = document.createElement('td');
         const titleCell = document.createElement('td');
@@ -53,6 +64,7 @@ const addBlog = () => {
         const editButton = document.createElement('button');
         const deleteButton = document.createElement('button');
 
+      // assigns the content text  
         idCell.textContent = blog.id;
         titleCell.textContent = blog.title;
         authorCell.textContent = blog.author;
@@ -80,6 +92,8 @@ const addBlog = () => {
     
 }
 
+
+//edit blog
 const editBlog = (blogId) => {
   const title = prompt("title");
   const author = prompt("author");
@@ -94,11 +108,13 @@ const editBlog = (blogId) => {
     })
     .then(response => response.json())
     .then(updatedBlog => {
+      //find row
       const rows = blogTableBody.getElementsByTagName('tr');
-  
+      
       for (let i = 0; i < rows.length; i++) {
         const idCell = rows[i].getElementsByTagName('td')[0];
-  
+        
+        //if id matcges, update
         if (parseInt(idCell.textContent) === updatedBlog.id) {
           const titleCell = rows[i].getElementsByTagName('td')[1];
           const authorCell = rows[i].getElementsByTagName('td')[2];
@@ -116,7 +132,7 @@ const editBlog = (blogId) => {
   };
 
 
-//delete
+//delete blog
 const deleteBlog = (blogId) => {
 
     fetch('/blogdelete', {
@@ -127,11 +143,13 @@ const deleteBlog = (blogId) => {
       body: JSON.stringify({ id: blogId }),
     })
     .then(response => {
+      //if found (204)
       if (response.status === 204) {
         // Remove the corresponding table row
         const rows = blogTableBody.getElementsByTagName('tr');
         for (let i = 0; i < rows.length; i++) {
           const idCell = rows[i].getElementsByTagName('td')[0];
+          //remove row when found
           if (parseInt(idCell.textContent) === blogId) {
             rows[i].remove();
             break;
@@ -145,46 +163,46 @@ const deleteBlog = (blogId) => {
   };
   
 
-    createBlogButton.addEventListener('click', addBlog);
+  createBlogButton.addEventListener('click', addBlog);
   
-    function displayBlogs(blogs) {
-      blogs.forEach((blog) => {
-        const row = createTableRow(blog);
-        blogTableBody.appendChild(row);
-      });
-    }
     
-    function createTableRow(blog) {
-      const row = document.createElement('tr');
-      const idCell = document.createElement('td');
-      const titleCell = document.createElement('td');
-      const authorCell = document.createElement('td');
-      const contentCell = document.createElement('td');
-      const actionCell = document.createElement('td');
-      const editButton = document.createElement('button');
-      const deleteButton = document.createElement('button');
     
-      idCell.textContent = blog.id;
-      titleCell.textContent = blog.title;
-      authorCell.textContent = blog.author;
-      contentCell.textContent = blog.content;
-      editButton.textContent = 'Edit';
-      deleteButton.textContent = 'Delete';
+  function createTableRow(blog) {
+
+    const row = document.createElement('tr');
+    const idCell = document.createElement('td');
+    const titleCell = document.createElement('td');
+    const authorCell = document.createElement('td');
+    const contentCell = document.createElement('td');
+    const actionCell = document.createElement('td');
+    const editButton = document.createElement('button');
+    const deleteButton = document.createElement('button');
+
+
+    // assign the text content
+    idCell.textContent = blog.id;
+    titleCell.textContent = blog.title;
+    authorCell.textContent = blog.author;
+    contentCell.textContent = blog.content;
+    editButton.textContent = 'Edit';
+    deleteButton.textContent = 'Delete';
     
-      row.appendChild(idCell);
-      row.appendChild(titleCell);
-      row.appendChild(authorCell);
-      row.appendChild(contentCell);
-      row.appendChild(actionCell);
+    //appends to the row
+    row.appendChild(idCell);
+    row.appendChild(titleCell);
+    row.appendChild(authorCell);
+    row.appendChild(contentCell);
+    row.appendChild(actionCell);
     
-      actionCell.appendChild(editButton);
-      actionCell.appendChild(deleteButton);
+    //appends byuttons
+    actionCell.appendChild(editButton);
+    actionCell.appendChild(deleteButton);
     
-      // Event listener for the edit button
-      editButton.addEventListener('click', () => editBlog(blog.id));
+    // Event listener for the edit button
+    editButton.addEventListener('click', () => editBlog(blog.id));
     
-      // Event listener for the delete button
-      deleteButton.addEventListener('click', () => deleteBlog(blog.id));
+    // Event listener for the delete button
+    deleteButton.addEventListener('click', () => deleteBlog(blog.id));
     
       return row;
     }

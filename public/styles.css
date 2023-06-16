@@ -133,4 +133,59 @@ a {
     border-radius: 10px;
     padding: 20px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.create {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    text-align: center;
+}
+.create h1 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  .create form {
+    margin-top: 20px;
+  }
+  .create label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+.create input[type="text"],
+.create input[type="date"],
+.create textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.create input[type="submit"] {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.create input[type="submit"]:hover {
+    background-color: #555;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.highlight {
+  background-color: yellow;
 }

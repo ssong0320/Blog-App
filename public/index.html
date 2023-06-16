@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css"
+</head>
+<body>
+    <header id="header" class="header">
+        <nav class="navbar">
+            <a href="/index.html" class="brand dark-text"></a>
+
+            <div class="collapse">
+                <ul class="navbar-nav">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Create</a>
+                    <a href="#" class="nav-link">Login/Register</a>
+                </ul>
+            </div>
+        <nav>
+    </header>
+    <div class="container">
+        <form class="search-bar">
+            <input type="text" placeholder="Search" name="q">
+            <button type="submit"><img src="images/search.png"></button>
+        </form>
+        <div class="blog-section" id="recent-posts-section">
+            <h1>Recent Posts</h1>
+
+            <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Content</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="blogTableBody"></tbody>
+              </table>
+        
+        </div>
+    </div>
+    <div class="create">
+        <h1>Create New Blog Post</h1>
+
+        <div id="new-blog">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title"><br>
+
+            <label for="author">Author:</label><br>
+            <input type="text" id="author" name="author"><br>
+            
+            <label for="date">Date:</label><br>
+            <input type="date" id="date" name="date"><br>
+            
+            <label for="content">Content:</label><br>
+            <textarea id="content" name="content"></textarea><br>
+            
+            <button id="createBlogButton">Create</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
